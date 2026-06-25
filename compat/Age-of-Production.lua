@@ -15,124 +15,74 @@
 --     end
 -- end
 
-if not mods["Age-of-Production"] then
-    log("Did not find compat Age-of-Production")
+if not mods["Age-of-Production-Classic"] then
+    log("Did not find compat Age-of-Production-Classic")
     return nil
 end
 
-log("Found compat Age-of-Production")
+log("Found compat Age-of-Production-Classic")
+
+local function add_categories(recipe_name, categories)
+    local recipe = data.raw.recipe[recipe_name]
+    if recipe and categories then
+        recipe.categories = recipe.categories or {"crafting"}
+        for _, cat in pairs(categories) do
+            table.insert(recipe.categories, cat)
+        end
+    end
+end
 
 if data.raw["assembling-machine"]["aop-atomic-enricher"] then aop_atomic_enricher = data.raw["assembling-machine"]["aop-atomic-enricher"] end
-if data.raw["assembling-machine"]["aop-biochemical-facility"] then aop_biomechanical_facility = data.raw["assembling-machine"]["aop-biochemical-facility"] end
-if data.raw["assembling-machine"]["aop-electromechanic-facility"] then aop_electromechanic_facility = data.raw["assembling-machine"]["aop-electromechanic-facility"] end
 if data.raw["assembling-machine"]["aop-greenhouse"] then aop_greenhouse = data.raw["assembling-machine"]["aop-greenhouse"] end
 if data.raw["assembling-machine"]["aop-lumber-mill"] then aop_lumber_mill = data.raw["assembling-machine"]["aop-lumber-mill"] end
 if data.raw["assembling-machine"]["aop-petrochemical-facility"] then aop_petrochemical_facility = data.raw["assembling-machine"]["aop-petrochemical-facility"] end
 if data.raw["assembling-machine"]["aop-hydraulic-plant"] and not mods["maraxsis"] then aop_hydraulic_plant = data.raw["assembling-machine"]["aop-hydraulic-plant"] end
-if data.raw["assembling-machine"]["aop-scrubber"] then aop_scrubber = data.raw["assembling-machine"]["aop-scrubber"] end
-if data.raw["assembling-machine"]["aop-smeltery"] then aop_smeltery = data.raw["assembling-machine"]["aop-smeltery"] end
 if data.raw["assembling-machine"]["aop-quantum-assembler"] then aop_quantum_assembler = data.raw["assembling-machine"]["aop-quantum-assembler"] end
 if data.raw["assembling-machine"]["aop-armory"] then aop_armory = data.raw["assembling-machine"]["aop-armory"] end
 if data.raw["assembling-machine"]["aop-mineral-synthesizer"] then aop_mineral_synthesizer = data.raw["assembling-machine"]["aop-mineral-synthesizer"] end
 if data.raw["assembling-machine"]["aop-advanced-assembling-machine"] then aop_advanced_assembling_machine = data.raw["assembling-machine"]["aop-advanced-assembling-machine"] end
 
 data:extend({
+  {
+    type = "recipe-category",
+    name = "advanced-centrifuging",
+  },
+  {
+    type = "recipe-category",
+    name = "quantum-assembling",
+  },
+  {
+    type = "recipe-category",
+    name = "woodworking",
+  },
+  {
+    type = "recipe-category",
+    name = "hydraulics",
+  },
+  {
+    type = "recipe-category",
+    name = "petrochemistry",
+  },
     {
-        type = "recipe-category",
-        name = "quantum-assembling-or-crafting-with-fluid",
-    },
-    {
-        type = "recipe-category",
-        name = "organic-or-quantum-assembling-or-crafting",
-    },
-    {
-        type = "recipe-category",
-        name = "organic-or-quantum-assembling-or-crafting-with-fluid",
-    },
-    {
-        type = "recipe-category",
-        name = "metallurgy-or-quantum-assembling-or-crafting",
-    },
-    {
-        type = "recipe-category",
-        name = "metallurgy-or-quantum-assembling-or-crafting-with-fluid",
-    },
-    {
-        type = "recipe-category",
-        name = "electronics-or-quantum-assembling-or-crafting",
-    },
-    {
-        type = "recipe-category",
-        name = "electronics-or-quantum-assembling-or-crafting-with-fluid",
-    },
-    {
-        type = "recipe-category",
-        name = "cryogenics-or-quantum-assembling-or-crafting",
-    },
-    {
-        type = "recipe-category",
-        name = "cryogenics-or-quantum-assembling-or-crafting-with-fluid",
-    },
-    {
-        type = "recipe-category",
-        name = "cryogenics-or-advanced-centrifuging",
-    },
-    {
-      type = "recipe-category",
-      name = "cryogenics-or-advanced-centrifuging-or-centrifuging",
-    },
-    {
-      type = "recipe-category",
-      name = "cryogenics-or-advanced-centrifuging-or-crafting",
-    },
-    {
-      type = "recipe-category",
-      name = "cryogenics-or-advanced-centrifuging-or-crafting-or-electromechanics",
-    },
-    {
-      type = "recipe-category",
-      name = "cryogenics-or-advanced-centrifuging-or-centrifuging",
-    },
-    {
-      type = "recipe-category",
-      name = "pressing-or-electromechanics-or-crafting",
-    },
-    {
-      type = "recipe-category",
-      name = "cryogenics-or-assembling-or-electromechanics",
-    },
-    {
-      type = "recipe-category",
-      name = "biochemistry-or-organic-or-quantum-assembling-or-crafting",
-    },
-    {
-      type = "recipe-category",
-      name = "electronics-or-electromechanics-or-crafting",
-    },
-    {
-      type = "recipe-category",
-      name = "pressing-or-ammunition",
-    },
-    {
-      type = "recipe-category",
-      name = "cryogenics-or-assembling-or-ammunition",
-    },
-    {
-      type = "recipe-category",
-      name = "cryogenics-or-advanced-centrifuging-or-crafting-or-ammunition",
-    },
-    {
-      type = "recipe-category",
-      name = "crafting-or-pressing-or-ammunition",
-    },
-    {
-      type = "recipe-category",
-      name = "crafting-or-cryogenics-or-ammunition",
-    },
-    {
-      type = "recipe-category",
-      name = "crafting-or-quantum-assembling-or-ammunition",
-    }
+    type = "recipe-category",
+    name = "synthesis",
+  },
+  {
+    type = "recipe-category",
+    name = "agriculture",
+  },
+  {
+    type = "recipe-category",
+    name = "core-mining"
+  },
+  {
+    type = "recipe-category",
+    name = "ammunition"
+  },
+  {
+    type = "recipe-category",
+    name = "cryogenics"
+  },
 })
 
 --make sure all recipe categories are added to the appropriate machines
@@ -205,24 +155,6 @@ for _, category in pairs(data.raw["recipe-category"]) do
             log("Added category "..category.name.." to aop_advanced_assembling_machine")
         end
     end
-    if string.find(category.name,"assembling",1,true) then
-        if not tableContains(assembler_1.crafting_categories,category.name)  and not string.find(category.name,"fluid",1,true) then
-            table.insert(assembler_1.crafting_categories,category.name)
-            log("Added category "..category.name.." to assembler_1")
-        end
-        if not tableContains(assembler_2.crafting_categories,category.name) then
-            table.insert(assembler_2.crafting_categories,category.name)
-            log("Added category "..category.name.." to assembler_2")
-        end
-        if not tableContains(assembler_3.crafting_categories,category.name) then
-            table.insert(assembler_3.crafting_categories,category.name)
-            log("Added category "..category.name.." to assembler_3")
-        end
-        if aop_advanced_assembling_machine and not tableContains(aop_advanced_assembling_machine.crafting_categories,category.name) then
-            table.insert(aop_advanced_assembling_machine.crafting_categories,category.name)
-            log("Added category "..category.name.." to aop_advanced_assembling_machine")
-        end
-    end
     if string.find(category.name,"hand-crafting",1,true) then
         if not tableContains(data.raw.character.character.crafting_categories,category.name) then
             table.insert(data.raw.character.character.crafting_categories,category.name)
@@ -235,60 +167,14 @@ for _, category in pairs(data.raw["recipe-category"]) do
             log("Added category "..category.name.." to chemical_plant")
         end
     end
-    if string.find(category.name,"electronics",1,true) then
-        if not tableContains(assembler_1.crafting_categories,category.name) and not string.find(category.name,"fluid",1,true) then
-            table.insert(assembler_1.crafting_categories,category.name)
-            log("Added category "..category.name.." to assembler_1")
-        end
-        if not tableContains(assembler_2.crafting_categories,category.name) then
-            table.insert(assembler_2.crafting_categories,category.name)
-            log("Added category "..category.name.." to assembler_2")
-        end
-        if not tableContains(assembler_3.crafting_categories,category.name) then
-            table.insert(assembler_3.crafting_categories,category.name)
-            log("Added category "..category.name.." to assembler_3")
-        end
-        if not tableContains(em_plant.crafting_categories,category.name) then
-            table.insert(em_plant.crafting_categories,category.name)
-            log("Added category "..category.name.." to em_plant")
-        end
-        if aop_advanced_assembling_machine and not tableContains(aop_advanced_assembling_machine.crafting_categories,category.name) then
-            table.insert(aop_advanced_assembling_machine.crafting_categories,category.name)
-            log("Added category "..category.name.." to aop_advanced_assembling_machine")
-        end
-    end
-    if string.find(category.name,"pressing",1,true) then
-        if not tableContains(assembler_1.crafting_categories,category.name) and not string.find(category.name,"fluid",1,true) then
-            table.insert(assembler_1.crafting_categories,category.name)
-            log("Added category "..category.name.." to assembler_1")
-        end
-        if not tableContains(assembler_2.crafting_categories,category.name) then
-            table.insert(assembler_2.crafting_categories,category.name)
-            log("Added category "..category.name.." to assembler_2")
-        end
-        if not tableContains(assembler_3.crafting_categories,category.name) then
-            table.insert(assembler_3.crafting_categories,category.name)
-            log("Added category "..category.name.." to assembler_3")
-        end
-        if not tableContains(foundry.crafting_categories,category.name) then
-            table.insert(foundry.crafting_categories,category.name)
-            log("Added category "..category.name.." to foundry")
-        end
-        if aop_advanced_assembling_machine and not tableContains(aop_advanced_assembling_machine.crafting_categories,category.name) then
-            table.insert(aop_advanced_assembling_machine.crafting_categories,category.name)
-            log("Added category "..category.name.." to aop_advanced_assembling_machine")
-        end
-    end
-    if string.find(category.name,"metallurgy",1,true) then
-        if not tableContains(foundry.crafting_categories,category.name) then
-            table.insert(foundry.crafting_categories,category.name)
-            log("Added category "..category.name.." to foundry")
-        end
-    end
     if string.find(category.name,"electromagnetics",1,true) then
         if not tableContains(em_plant.crafting_categories,category.name) then
             table.insert(em_plant.crafting_categories,category.name)
             log("Added category "..category.name.." to em_plant")
+        end
+        if aop_advanced_assembling_machine and not tableContains(aop_advanced_assembling_machine.crafting_categories,category.name) then
+            table.insert(aop_advanced_assembling_machine.crafting_categories,category.name)
+            log("Added category "..category.name.." to aop_advanced_assembling_machine")
         end
     end
     if string.find(category.name,"organic",1,true) then
@@ -325,18 +211,6 @@ for _, category in pairs(data.raw["recipe-category"]) do
             log("Added category "..category.name.." to aop_quantum_assembler")
         end
     end
-    if string.find(category.name,"biochemistry",1,true) then
-        if aop_biomechanical_facility and not tableContains(aop_biomechanical_facility.crafting_categories,category.name) then
-            table.insert(aop_biomechanical_facility.crafting_categories,category.name)
-            log("Added category "..category.name.." to aop_biomechanical_facility")
-        end
-    end
-    if string.find(category.name,"electromechanics",1,true) then
-        if aop_electromechanic_facility and not tableContains(aop_electromechanic_facility.crafting_categories,category.name) then
-            table.insert(aop_electromechanic_facility.crafting_categories,category.name)
-            log("Added category "..category.name.." to aop_electromechanic_facility")
-        end
-    end
     if string.find(category.name,"petrochemistry",1,true) then
         if aop_petrochemical_facility and not tableContains(aop_petrochemical_facility.crafting_categories,category.name) then
             table.insert(aop_petrochemical_facility.crafting_categories,category.name)
@@ -364,105 +238,105 @@ for _, category in pairs(data.raw["recipe-category"]) do
 end
 
 --CENTRIFUGE and ATOMIC ENRICHER
-changeCategory("atomic-bomb","cryogenics-or-advanced-centrifuging-or-crafting-or-ammunition")
+add_categories("atomic-bomb", {"cryogenics", "advanced-centrifuging", "crafting", "ammunition"})
 if settings.startup["nuclear-reactor-cryo-plant"].value then
-    changeCategory("nuclear-reactor","cryogenics-or-advanced-centrifuging-or-crafting")
+    add_categories("nuclear-reactor", { "cryogenics", "advanced-centrifuging", "crafting" })
 end
 
 --QUANTUM ASSEMBLER and SCIENCES
 
 if settings.startup["basic-science-changes"].value then
-    changeCategory("chemical-science-pack","biochemistry-or-organic-or-quantum-assembling-or-crafting")
-    changeCategory("production-science-pack","metallurgy-or-quantum-assembling-or-crafting")
-    changeCategory("utility-science-pack","electronics-or-quantum-assembling-or-crafting")
-    changeCategory("space-science-pack","cryogenics-or-quantum-assembling-or-crafting")
+    add_categories("chemical-science-pack", { "organic", "quantum-assembling", "crafting" })
+    add_categories("production-science-pack", { "metallurgy", "quantum-assembling", "crafting" })
+    add_categories("utility-science-pack", { "electromagnetics", "quantum-assembling", "crafting" })
+    add_categories("space-science-pack", { "cryogenics", "quantum-assembling", "crafting" })
 end
 
 --BIOCHAMBER and BIOMECHANICAL FACILITY
 
-changeCategory("biolab","biochemistry-or-organic-or-assembling")
-changeCategory("artificial-yumako-soil","biochemistry-or-organic-or-assembling")
-changeCategory("overgrowth-yumako-soil","biochemistry-or-organic-or-assembling")
-changeCategory("artificial-jellynut-soil","biochemistry-or-organic-or-assembling")
-changeCategory("overgrowth-jellynut-soil","biochemistry-or-organic-or-assembling")
-changeCategory("solid-fuel-from-light-oil","biochemistry-or-organic-or-assembling")
-changeCategory("solid-fuel-from-petroleum-gas","biochemistry-or-organic-or-assembling")
-changeCategory("solid-fuel-from-heavy-oil","biochemistry-or-organic-or-assembling")
+add_categories("biolab", { "organic" })
+add_categories("artificial-yumako-soil", { "organic" })
+add_categories("overgrowth-yumako-soil", { "organic" })
+add_categories("artificial-jellynut-soil", { "organic" })
+add_categories("overgrowth-jellynut-soil", { "organic" })
+add_categories("solid-fuel-from-light-oil", { "organic" })
+add_categories("solid-fuel-from-petroleum-gas", { "organic" })
+add_categories("solid-fuel-from-heavy-oil", { "organic" })
 
 
 --FOUNDRY AND SMELTERY
 
-changeCategory("locomotive","pressing-or-electromechanics-or-crafting")
-changeCategory("cargo-wagon","pressing-or-electromechanics-or-crafting")
-changeCategory("fluid-wagon","pressing-or-electromechanics-or-crafting")
-changeCategory("artillery-wagon","pressing-or-electromechanics")
+add_categories("locomotive", { "electromagnetics", "crafting" })
+add_categories("cargo-wagon", { "electromagnetics", "crafting" })
+add_categories("fluid-wagon", { "electromagnetics", "crafting" })
+add_categories("artillery-wagon", { "electromagnetics" })
 
 
 --EM PLANT and ELECTROMECHANIC FACILITY
 
-changeCategory("energy-shield-equipment","electronics-or-electromechanics-or-crafting")
-changeCategory("energy-shield-mk2-equipment","electronics-or-electromechanics-or-crafting")
-changeCategory("battery-equipment","electronics-or-electromechanics-or-crafting")
-changeCategory("battery-mk2-equipment","electronics-or-electromechanics-or-crafting")
-changeCategory("battery-mk3-equipment","electronics-or-electromechanics-or-crafting")
-changeCategory("solar-panel-equipment","electronics-or-electromechanics-or-crafting")
-changeCategory("laser-turret","electronics-or-electromechanics-or-crafting")
-changeCategory("personal-laser-defense-equipment","electronics-or-electromechanics-or-crafting")
+add_categories("energy-shield-equipment", { "electromagnetics", "electromagnetics", "crafting" })
+add_categories("energy-shield-mk2-equipment", { "electromagnetics", "electromagnetics", "crafting" })
+add_categories("battery-equipment", { "electromagnetics", "electromagnetics", "crafting" })
+add_categories("battery-mk2-equipment", { "electromagnetics", "electromagnetics", "crafting" })
+add_categories("battery-mk3-equipment", { "electromagnetics", "electromagnetics", "crafting" })
+add_categories("solar-panel-equipment", { "electromagnetics", "electromagnetics", "crafting" })
+add_categories("laser-turret", { "electromagnetics", "electromagnetics", "crafting" })
+add_categories("personal-laser-defense-equipment", { "electromagnetics", "electromagnetics", "crafting" })
 
-changeCategory("radar","electronics-or-electromechanics-or-crafting")
+add_categories("radar", { "electromagnetics", "electromagnetics", "crafting" })
 
-changeCategory("defender-capsule","electronics-or-electromechanics-or-crafting")
-changeCategory("distractor-capsule","electronics-or-electromechanics-or-crafting")
-changeCategory("destroyer-capsule","electronics-or-electromechanics-or-crafting")
+add_categories("defender-capsule", { "electromagnetics", "electromagnetics", "crafting" })
+add_categories("distractor-capsule", { "electromagnetics", "electromagnetics", "crafting" })
+add_categories("destroyer-capsule", { "electromagnetics", "electromagnetics", "crafting" })
 
-changeCategory("roboport","electronics-or-electromechanics-or-crafting")
-changeCategory("construction-robot","electronics-or-electromechanics-or-crafting")
-changeCategory("logistic-robot","electronics-or-electromechanics-or-crafting")
+add_categories("roboport", { "electromagnetics", "electromagnetics", "crafting" })
+add_categories("construction-robot", { "electromagnetics", "electromagnetics", "crafting" })
+add_categories("logistic-robot", { "electromagnetics", "electromagnetics", "crafting" })
 
-changeCategory("cargo-bay","electromechanics-or-crafting")
-changeCategory("asteroid-collector","electromechanics-or-crafting")
-changeCategory("crusher","electromechanics-or-crafting")
-changeCategory("thruster","electromechanics-or-crafting")
+add_categories("cargo-bay", { "electromagnetics", "crafting" })
+add_categories("asteroid-collector", { "electromagnetics", "crafting" })
+add_categories("crusher", { "electromagnetics", "crafting" })
+add_categories("thruster", { "electromagnetics", "crafting" })
 
-changeCategory("beacon","electronics-or-electromechanics-or-crafting")
+add_categories("beacon", { "electromagnetics", "electromagnetics", "crafting" })
 
 if settings.startup["personal-equip-em-plant"].value then
-    changeCategory("exoskeleton-equipment","electronics-or-electromechanics")
-    changeCategory("personal-roboport-equipment","electronics-or-electromechanics")
-    changeCategory("personal-roboport-mk2-equipment","electronics-or-electromechanics")
-    changeCategory("night-vision-equipment","electronics-or-electromechanics")
-    changeCategory("belt-immunity-equipment","electronics-or-electromechanics")
+    add_categories("exoskeleton-equipment", { "electromagnetics", "electromagnetics" })
+    add_categories("personal-roboport-equipment", { "electromagnetics", "electromagnetics" })
+    add_categories("personal-roboport-mk2-equipment", { "electromagnetics", "electromagnetics" })
+    add_categories("night-vision-equipment", { "electromagnetics", "electromagnetics" })
+    add_categories("belt-immunity-equipment", { "electromagnetics", "electromagnetics" })
     if settings.startup["nuclear-reactor-cryo-plant"].value then
-        changeCategory("fission-reactor-equipment","cryogenics-or-assembling-or-electromechanics")
-        changeCategory("fusion-reactor-equipment","cryogenics-or-assembling-or-electromechanics")
+        add_categories("fission-reactor-equipment", { "cryogenics", "electromagnetics" })
+        add_categories("fusion-reactor-equipment", { "cryogenics", "electromagnetics" })
     end
 end
 
 
 --CRYO PLANT
-changeCategory("ammonial-holmium-solution","hydraulics-or-chemistry-or-cryogenics")
+add_categories("ammonial-holmium-solution", { "hydraulics", "chemistry", "cryogenics" })
 
 
 --ASSEMBLING MACHINE
 
 --CHEMISTRY and PETROCHEM
-changeCategory("solid-fuel-from-light-oil","petrochemistry-or-organic-or-chemistry")
-changeCategory("solid-fuel-from-heavy-oil","petrochemistry-or-organic-or-chemistry")
-changeCategory("solid-fuel-from-petroleum-gas","petrochemistry-or-organic-or-chemistry")
+add_categories("solid-fuel-from-light-oil", { "petrochemistry", "organic", "chemistry" })
+add_categories("solid-fuel-from-heavy-oil", { "petrochemistry", "organic", "chemistry" })
+add_categories("solid-fuel-from-petroleum-gas", { "petrochemistry", "organic", "chemistry" })
 
 --AMMUNITION
-changeCategory("artillery-shell","crafting-or-pressing-or-ammunition")
-changeCategory("cannon-shell","crafting-or-pressing-or-ammunition")
-changeCategory("explosive-cannon-shell","crafting-or-pressing-or-ammunition")
-changeCategory("uranium-cannon-shell","crafting-or-cryogenics-or-ammunition")
-changeCategory("explosive-uranium-cannon-shell","crafting-or-cryogenics-or-ammunition")
-changeCategory("rocket","crafting-or-pressing-or-ammunition")
-changeCategory("explosive-rocket","crafting-or-pressing-or-ammunition")
-changeCategory("firearm-magazine","crafting-or-pressing-or-ammunition")
-changeCategory("piercing-rounds-magazine","crafting-or-pressing-or-ammunition")
-changeCategory("uranium-rounds-magazine","crafting-or-cryogenics-or-ammunition")
+add_categories("artillery-shell", { "crafting", "ammunition" })
+add_categories("cannon-shell", { "crafting", "ammunition" })
+add_categories("explosive-cannon-shell", { "crafting", "ammunition" })
+add_categories("uranium-cannon-shell", { "crafting", "cryogenics", "ammunition" })
+add_categories("explosive-uranium-cannon-shell", { "crafting", "cryogenics", "ammunition" })
+add_categories("rocket", { "crafting", "ammunition" })
+add_categories("explosive-rocket", { "crafting", "ammunition" })
+add_categories("firearm-magazine", { "crafting", "ammunition" })
+add_categories("piercing-rounds-magazine", { "crafting", "ammunition" })
+add_categories("uranium-rounds-magazine", { "crafting", "cryogenics", "ammunition" })
 
-changeCategory("military-science-pack","crafting-or-quantum-assembling-or-ammunition")
-changeCategory("advanced-military-science-pack","crafting-or-quantum-assembling-or-ammunition")
+add_categories("military-science-pack", { "crafting", "quantum-assembling", "ammunition" })
+add_categories("advanced-military-science-pack", { "crafting", "quantum-assembling", "ammunition", "crafting-with-fluid" })
 
 return skipped_recipes

@@ -32,6 +32,8 @@ function matchInTable(table, pattern)
     return false
 end
 
+-- TODO: Adapt to 2.1
+
 --@param recipe string The recipe to change
 --@param category string The category to change it to
 --@param reference string||table A recipe or table of recipes to take the category of if available
@@ -39,16 +41,16 @@ function changeCategory(recipe,category,reference)
     if type(reference)=="table" then refstring = table.concat(reference,", ") else refstring = tostring(reference) end
     log("Changing recipe "..recipe.." to category "..category..",  or referencing category of "..refstring)
     if type(reference) == "string" then
-        if data.raw["recipe"][reference].category then
-            category = data.raw["recipe"][reference].category
+        if data.raw["recipe"][reference].categories then
+            category = data.raw["recipe"][reference].categories
         else
             log("Reference recipe category was not available, using default.")
         end
     elseif type(reference) == "table" then
         reference_valid = false
         for i, entry in pairs(reference) do
-            if data.raw["recipe"][reference].category then
-                category = data.raw["recipe"][reference].category
+            if data.raw["recipe"][reference].categories then
+                category = data.raw["recipe"][reference].categories
                 reference_valid = true
                 break
             end
@@ -58,7 +60,7 @@ function changeCategory(recipe,category,reference)
         log("Reference given was not a string or table!")
     end
     if data.raw.recipe[recipe] then
-        data.raw.recipe[recipe].category = category
+        data.raw.recipe[recipe].categories = category
         return true
     else
         log("Failed to find "..recipe.." to change category of!")
@@ -91,9 +93,9 @@ function checkUpdateIcon(icon_path,reference_path)
 end
 
 if adv_science_recipes then
-    checkUpdateIcon(data.raw["tool"]["automation-science-pack"].icon,data.raw["recipe"]["advanced-automation-science-pack"].icons[1].icon)
-    checkUpdateIcon(data.raw["tool"]["logistic-science-pack"].icon,data.raw["recipe"]["advanced-logistic-science-pack"].icons[1].icon)
-    checkUpdateIcon(data.raw["tool"]["military-science-pack"].icon,data.raw["recipe"]["advanced-military-science-pack"].icons[1].icon)
+    checkUpdateIcon(data.raw["recipe"]["automation-science-pack"].icon,data.raw["recipe"]["advanced-automation-science-pack"].icons[1].icon)
+    checkUpdateIcon(data.raw["recipe"]["logistic-science-pack"].icon,data.raw["recipe"]["advanced-logistic-science-pack"].icons[1].icon)
+    checkUpdateIcon(data.raw["recipe"]["military-science-pack"].icon,data.raw["recipe"]["advanced-military-science-pack"].icons[1].icon)
 end
 
 --Mod Compat

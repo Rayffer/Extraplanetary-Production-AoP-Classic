@@ -1,3 +1,12 @@
+Version: 1.4.0
+Date: 2026-06-26
+  Changes:
+    - Added Support for Factorio 2.1
+
+  Pending work:
+    - Fix Advanced Science Recipes, currently deactivated
+
+---------------------------------------------------------------------------------------------------
 Version: 1.3.73
   Bugfixes:
     - Changed order of compat script loading
@@ -96,7 +105,7 @@ Version: 1.3.1
     - (AoP) Fixed multiple missing recipes in the electromechanic facility
   Features:
     - (AoP) Added cargo bay, asteroid collector, crusher, and thruster to electromechanic facility
-
+    
 ---------------------------------------------------------------------------------------------------
 Version: 1.2.1
   Info:

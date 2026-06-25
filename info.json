@@ -1,9 +1,9 @@
 {
-	"name": "extraplanetary-production",
-	"version": "1.3.73",
-	"title": "Extraplanetary Production",
+	"name": "Extraplanetary-Production-AoP-Classic",
+	"version": "1.4.0",
+	"title": "Extraplanetary Production (AoP Classic",
 	"author": "inkyboi",
-	"factorio_version": "2.0",
+	"factorio_version": "2.1",
 	"dependencies": ["space-age", "? cargo-ships", "? aai-containers", "? valves", "? vtk-cannon-turret", "? doeworks-deer", "? pushbutton", "? Age-of-Production", "? NauvisWithEverything", "? maraxsis"],
 	"description": "Adds more and alternate recipes to the foundry, EM plant, and cryogenic plant, with a focus on immersive and vanilla-friendly changes.\nAlso has full support for Age of Production, integrating EP's recipe changes with AoP's buildings."
 }
