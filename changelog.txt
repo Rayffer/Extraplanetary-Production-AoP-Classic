@@ -1,19 +1,77 @@
----------------------------------------------------------------------------------------------------
-Version: 1.2.1
-  Info:
-    - Began using the proper changelogs, thanks Sgamez.
-    - Fixed missing recipes on the mod page.
-  Features:
-    - Added space platform foundations to the foundry.
-    - Added some config to enable and disable certain features.
-    - Added most personal equipment not already in the em plant to it (configurable, disabled by default).
-    - Added personal nuclear reactor to the cryo plant (configurable, disabled by default).
-    - Enabling both all personal equipment in EM plant and nuclear reactor in cryo plant
-      will also allow both personal fission and fusion reactors in the cryo plant.
-    - Added config for advanced science pack recipes (enabled by default).
-    - Added config for adding certain science packs to other buildings (enabled by default).
+Version: 1.3.73
   Bugfixes:
-    - Changed data load timings to hopefully prevent overwriting other mods' recipe changes.
+    - Changed order of compat script loading
+
+---------------------------------------------------------------------------------------------------
+Version: 1.3.72
+  Bugfixes:
+    - Fix for an error caused by the foundation recipe due to referencing transport-belt. Now references express-transport-belt to account for fluid ingredient.
+
+---------------------------------------------------------------------------------------------------
+Version: 1.3.71
+  Bugfixes:
+    - Recipes that were intended to be in both assemblers and the cryogenic plant and were limited to only the cryogenic plant be mistake have been fixed.
+  Minor Features:
+    - Added reference recipes for other science pack category changes; previously only space science had this.
+  Info:
+    - Recipes changed due to AoP compat do not currently use reference recipes as most of them use unique categories added by this mod.
+    
+---------------------------------------------------------------------------------------------------
+Version: 1.3.7
+  Features:
+    - Option for inserters to be made in the electromagnetic plant (Configurable, default false)
+    - Added a system for automatically finding and assigning recipes to machines as necessary. Currently supports assemblers and chemical plants, and if you aren't using any mods that add these (or are only also using AoP) you can turn this setting off as it might marginally improve startup times.
+    - Also added recipe references for vanilla recipe changes; this will look at another recipe's category when trying to change the category. For example, if a mod changes the category of speed modules from electronics, all of this mod's recipes that are intended for 'electronics' will inherit the category of speed modules. This is far from perfect, but again: EP is vanilla focused and mod support is not guaranteed.
+  Bugfixes:
+    - (Compat) Advanced science pack recipes should now properly reflect changes to the science pack icons made by other mods.
+    - (Base,AoP) Ammunition is able to be crafted by the player again.
+  Minor Features:
+    - Advanced military science recipe now produces 4x the science (5 => 20) and takes 5x longer to craft (10s => 50s). This balances out the increased complexity and resource requirements by making the production rate 2x the vanilla recipe (0.2p/s => 0.4/ps; without productivity from the AoP armory or similar), as well as making the coal demand lower per science pack (before it was roughly 3x MORE coal per pack than vanilla).
+  Info:
+    - Inserters were previously not made outside of assembly machines (or AoP electromagnetic plant) due to my immersion philosophy: things with many small/moving parts (complex) should be made in assembly machines (precise assembly).
+    - Exceptions being vanilla precedent or mod compatibility (ie if either vanilla or a compatible mod allows similar recipes in a given machine)
+    - Other reasonable but against my immersion philosophy will also be available but off by default, check the mod config for any such implementations.
+
+---------------------------------------------------------------------------------------------------
+Version: 1.3.6
+  Bugfixes:
+    - (AoP) Fixed reloading AoP during compatibility phase, which caused some errors AoP had already fixed to reappear.
+
+---------------------------------------------------------------------------------------------------
+Version: 1.3.5
+  Bugfixes:
+    - (AoP,Maraxsis) Should no longer cause crashes with both mods installed.
+    - (AoP) Uranium magazine, uranium cannon shells, and atomic bomb are now available in the proper machines.
+    - (AoP) Armory recipe categories should no longer be overridden.
+  Info:
+    - Removed reference to cooling catalyst in ammonial holmium solution recipe description.
+  Minor Features:
+    - (AoP) Any applicable recipes should be automatically applied to the armory, mineral synthesizer, and advanced assembler.
+
+---------------------------------------------------------------------------------------------------
+Version: 1.3.4
+  Bugfixes:
+    - (AoP) Added beacons to the electromechanic facility
+    - (AoP) Added chemical science packs to the biomechanical facility
+    - (Nauvis With Everything) Fixed new foundry recipes not unlocking with foundry tech. Fix should also cover any similar issues where mods override technology unlocks with hard-coded tables.
+  Minor Features:
+    - (AoP) Changed how adding recipe categories to machines is handled to be automatic instead of manual. Please report if any recipes seem to not show up where they should.
+  Features:
+    - Ammonial holmium solution recipe no longer requires or returns fluoroketone. Now requires 10 ammonia and returns 5.
+      Holmium ore required reduced from 2 to 1 (50%). Holmium solution output reduced to 75 (50%).
+      This means that the recipe can actually be made within the available buildings, as the previous recipe had 5 fluid ingredients/outputs.
+
+---------------------------------------------------------------------------------------------------
+Version: 1.3.3
+  Bugfixes:
+    - Fixed a startup crash
+
+---------------------------------------------------------------------------------------------------
+Version: 1.3.2
+  Bugfixes:
+    - (AoP) Fixed locomotive, cargo wagon, fluid wagon recipes missing from machines when Age of Production is present
+  Features:
+    - Added config for logistic chests in the EM plant (enabled by default)
 
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.0
@@ -40,77 +98,18 @@ Version: 1.3.1
     - (AoP) Added cargo bay, asteroid collector, crusher, and thruster to electromechanic facility
 
 ---------------------------------------------------------------------------------------------------
-Version: 1.3.2
-  Bugfixes:
-    - (AoP) Fixed locomotive, cargo wagon, fluid wagon recipes missing from machines when Age of Production is present
-  Features:
-    - Added config for logistic chests in the EM plant (enabled by default)
-
----------------------------------------------------------------------------------------------------
-Version: 1.3.3
-  Bugfixes:
-    - Fixed a startup crash
-
----------------------------------------------------------------------------------------------------
-Version: 1.3.4
-  Bugfixes:
-    - (AoP) Added beacons to the electromechanic facility
-    - (AoP) Added chemical science packs to the biomechanical facility
-    - (Nauvis With Everything) Fixed new foundry recipes not unlocking with foundry tech. Fix should also cover any similar issues where mods override technology unlocks with hard-coded tables.
-  Minor Features:
-    - (AoP) Changed how adding recipe categories to machines is handled to be automatic instead of manual. Please report if any recipes seem to not show up where they should.
-  Features:
-    - Ammonial holmium solution recipe no longer requires or returns fluoroketone. Now requires 10 ammonia and returns 5.
-      Holmium ore required reduced from 2 to 1 (50%). Holmium solution output reduced to 75 (50%).
-      This means that the recipe can actually be made within the available buildings, as the previous recipe had 5 fluid ingredients/outputs.
-
----------------------------------------------------------------------------------------------------
-Version: 1.3.5
-  Bugfixes:
-    - (AoP,Maraxsis) Should no longer cause crashes with both mods installed.
-    - (AoP) Uranium magazine, uranium cannon shells, and atomic bomb are now available in the proper machines.
-    - (AoP) Armory recipe categories should no longer be overridden.
+Version: 1.2.1
   Info:
-    - Removed reference to cooling catalyst in ammonial holmium solution recipe description.
-  Minor Features:
-    - (AoP) Any applicable recipes should be automatically applied to the armory, mineral synthesizer, and advanced assembler.
-
----------------------------------------------------------------------------------------------------
-Version: 1.3.5
-  Bugfixes:
-    - (AoP) Fixed reloading AoP during compatibility phase, which caused some errors AoP had already fixed to reappear.
-
----------------------------------------------------------------------------------------------------
-Version: 1.3.7
+    - Began using the proper changelogs, thanks Sgamez.
+    - Fixed missing recipes on the mod page.
   Features:
-    - Option for inserters to be made in the electromagnetic plant (Configurable, default false)
-    - Added a system for automatically finding and assigning recipes to machines as necessary. Currently supports assemblers and chemical plants, and if you aren't using any mods that add these (or are only also using AoP) you can turn this setting off as it might marginally improve startup times.
-    - Also added recipe references for vanilla recipe changes; this will look at another recipe's category when trying to change the category. For example, if a mod changes the category of speed modules from electronics, all of this mod's recipes that are intended for 'electronics' will inherit the category of speed modules. This is far from perfect, but again: EP is vanilla focused and mod support is not guaranteed.
+    - Added space platform foundations to the foundry.
+    - Added some config to enable and disable certain features.
+    - Added most personal equipment not already in the em plant to it (configurable, disabled by default).
+    - Added personal nuclear reactor to the cryo plant (configurable, disabled by default).
+    - Enabling both all personal equipment in EM plant and nuclear reactor in cryo plant
+      will also allow both personal fission and fusion reactors in the cryo plant.
+    - Added config for advanced science pack recipes (enabled by default).
+    - Added config for adding certain science packs to other buildings (enabled by default).
   Bugfixes:
-    - (Compat) Advanced science pack recipes should now properly reflect changes to the science pack icons made by other mods.
-    - (Base,AoP) Ammunition is able to be crafted by the player again.
-  Minor Features:
-    - Advanced military science recipe now produces 4x the science (5 => 20) and takes 5x longer to craft (10s => 50s). This balances out the increased complexity and resource requirements by making the production rate 2x the vanilla recipe (0.2p/s => 0.4/ps; without productivity from the AoP armory or similar), as well as making the coal demand lower per science pack (before it was roughly 3x MORE coal per pack than vanilla).
-  Info:
-    - Inserters were previously not made outside of assembly machines (or AoP electromagnetic plant) due to my immersion philosophy: things with many small/moving parts (complex) should be made in assembly machines (precise assembly).
-    - Exceptions being vanilla precedent or mod compatibility (ie if either vanilla or a compatible mod allows similar recipes in a given machine)
-    - Other reasonable but against my immersion philosophy will also be available but off by default, check the mod config for any such implementations.
-
----------------------------------------------------------------------------------------------------
-Version: 1.3.71
-  Bugfixes:
-    - Recipes that were intended to be in both assemblers and the cryogenic plant and were limited to only the cryogenic plant be mistake have been fixed.
-  Minor Features:
-    - Added reference recipes for other science pack category changes; previously only space science had this.
-  Info:
-    - Recipes changed due to AoP compat do not currently use reference recipes as most of them use unique categories added by this mod.
-    
----------------------------------------------------------------------------------------------------
-Version: 1.3.72
-  Bugfixes:
-    - Fix for an error caused by the foundation recipe due to referencing transport-belt. Now references express-transport-belt to account for fluid ingredient.
-    
----------------------------------------------------------------------------------------------------
-Version: 1.3.73
-  Bugfixes:
-    - Changed order of compat script loading
+    - Changed data load timings to hopefully prevent overwriting other mods' recipe changes.
