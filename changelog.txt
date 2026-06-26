@@ -3,9 +3,6 @@ Date: 2026-06-26
   Changes:
     - Added Support for Factorio 2.1
 
-  Pending work:
-    - Fix Advanced Science Recipes, currently deactivated
-
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.73
   Bugfixes:
