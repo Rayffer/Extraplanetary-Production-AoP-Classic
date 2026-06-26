@@ -32,40 +32,102 @@ function matchInTable(table, pattern)
     return false
 end
 
--- TODO: Adapt to 2.1
+-- Returns a deep copy of a recipe's categories.
+-- If the recipe has no categories (or an empty list), treat it as {"crafting"}.
+local function getRecipeCategories(recipeName)
+    local recipe = data.raw.recipe[recipeName]
+
+    if not recipe then
+        return nil
+    end
+
+    if not recipe.categories or #recipe.categories == 0 then
+        return { "crafting" }
+    end
+
+    return table.deepcopy(recipe.categories)
+end
 
 --@param recipe string The recipe to change
---@param category string The category to change it to
---@param reference string||table A recipe or table of recipes to take the category of if available
-function changeCategory(recipe,category,reference)
-    if type(reference)=="table" then refstring = table.concat(reference,", ") else refstring = tostring(reference) end
-    log("Changing recipe "..recipe.." to category "..category..",  or referencing category of "..refstring)
+--@param category string|table The fallback category/categories
+--@param reference string|table A recipe or table of recipes to copy categories from
+function changeCategory(recipe, category, reference)
+    local refstring
+    if type(reference) == "table" then
+        refstring = table.concat(reference, ", ")
+    else
+        refstring = tostring(reference)
+    end
+
+    log("Changing recipe '" .. recipe .. "' using reference '" .. refstring .. "'")
+
+    local newCategories = nil
+
+    -- Try to obtain categories from the reference recipe(s)
     if type(reference) == "string" then
-        if data.raw["recipe"][reference].categories then
-            category = data.raw["recipe"][reference].categories
+        newCategories = getRecipeCategories(reference)
+
+        if newCategories then
+            log("Copied categories from '" .. reference .. "'")
         else
-            log("Reference recipe category was not available, using default.")
+            log("Reference recipe '" .. reference .. "' does not exist, using fallback.")
         end
+
     elseif type(reference) == "table" then
-        reference_valid = false
-        for i, entry in pairs(reference) do
-            if data.raw["recipe"][reference].categories then
-                category = data.raw["recipe"][reference].categories
-                reference_valid = true
+        for _, entry in ipairs(reference) do
+            newCategories = getRecipeCategories(entry)
+            if newCategories then
+                log("Copied categories from '" .. entry .. "'")
                 break
             end
         end
-        if reference_valid then log("Successfully used reference: "..reference..", category is "..category) else log("No valid reference could be found, using default.") end
+
+        if not newCategories then
+            log("No valid reference recipe found, using fallback.")
+        end
     else
-        log("Reference given was not a string or table!")
+        log("Reference was not a string or table.")
     end
-    if data.raw.recipe[recipe] then
-        data.raw.recipe[recipe].categories = category
-        return true
-    else
-        log("Failed to find "..recipe.." to change category of!")
+
+    -- Use the supplied fallback if no reference categories were found
+    if not newCategories then
+        if type(category) == "string" then
+            newCategories = { category }
+        elseif type(category) == "table" then
+            newCategories = table.deepcopy(category)
+        else
+            log("Invalid fallback category type.")
+            return false
+        end
+    end
+
+    local recipeProto = data.raw.recipe[recipe]
+    if not recipeProto then
+        log("Failed to find recipe '" .. recipe .. "'")
         return false
     end
+
+    -- Missing/empty categories implicitly mean "crafting".
+    if not recipeProto.categories or #recipeProto.categories == 0 then
+        recipeProto.categories = { "crafting" }
+    end
+
+    -- Build lookup table of existing categories.
+    local existing = {}
+    for _, cat in ipairs(recipeProto.categories) do
+        existing[cat] = true
+    end
+
+    -- Append any missing categories.
+    for _, cat in ipairs(newCategories) do
+        if not existing[cat] then
+            table.insert(recipeProto.categories, cat)
+            existing[cat] = true
+        end
+    end
+
+    log("Recipe '" .. recipe .. "' categories are now: " .. table.concat(recipeProto.categories, ", "))
+    return true
 end
 
 assembler_1 = data.raw["assembling-machine"]["assembling-machine-1"]

@@ -6,7 +6,7 @@ function addRecipeToTechnology(recipe,technology)
       })
 end
 
--- adv_science_recipes = settings.startup["adv-science-recipes"].value
+adv_science_recipes = settings.startup["adv-science-recipes"].value
 
 data:extend{
     {
@@ -209,92 +209,91 @@ addRecipeToTechnology("casting-rail","foundry")
 addRecipeToTechnology("casting-heat-pipe","foundry")
 addRecipeToTechnology("lds-space-platform-foundation","foundry")
 
--- TODO: FIX
--- -- Advanced Sciences
--- if adv_science_recipes then
---     data:extend{
---         {
---             type = "item-subgroup",
---             name = "advanced-science-pack",
---             group = "intermediate-products",
---             order = "y"
---         }
---     }
+-- Advanced Sciences
+if adv_science_recipes then
+    data:extend{
+        {
+            type = "item-subgroup",
+            name = "advanced-science-pack",
+            group = "intermediate-products",
+            order = "y"
+        }
+    }
 
---     data:extend{
---         {
---             type = "recipe",
---             name = "advanced-automation-science-pack",
---             categories = { "metallurgy" },
---             subgroup = "advanced-science-pack",
---             icons = {{
---                 icon = "__base__/graphics/icons/automation-science-pack.png",
---                 scale = 1.0,
---                 shift = {0, 0}
---                 },{
---                     icon = "__extraplanetary-production__/graphics/icons/advanced-recipe.png",
---                     scale = 0.5,
---                     shift = {-12, 12}
---                 }},
---             enabled = false,
---             ingredients = {
---                 {type = "item", name = "iron-gear-wheel", amount = 10},
---                 {type = "fluid", name = "molten-copper", amount = 100}
---             },
---             energy_required = 50,
---             results = {{type="item", name="automation-science-pack", amount=10}},
---             allow_productivity = true
---         },
---         {
---             type = "recipe",
---             name = "advanced-logistic-science-pack",
---             categories = { "electromagnetics" },
---             subgroup = "advanced-science-pack",
---             icons = {{
---                 icon = "__base__/graphics/icons/logistic-science-pack.png",
---                 scale = 1.0,
---                 shift = {0, 0}
---                 },{
---                 icon = "__extraplanetary-production__/graphics/icons/advanced-recipe.png",
---                 scale = 0.5,
---                 shift = {-12, 12}
---                 }},
---             enabled = false,
---             ingredients = {
---                 {type = "item", name = "fast-inserter", amount = 1},
---                 {type = "item", name = "fast-transport-belt", amount = 1}
---             },
---             energy_required = 18,
---             results = {{type="item", name="logistic-science-pack", amount=3}},
---             allow_productivity = true
---         },
---         {
---             type = "recipe",
---             name = "advanced-military-science-pack",
---             categories = { "crafting-with-fluid" },
---             subgroup = "advanced-science-pack",
---             icons = {{
---                 icon = "__base__/graphics/icons/military-science-pack.png",
---                 scale = 1.0,
---                 shift = {0, 0}
---                 },{
---                 icon = "__extraplanetary-production__/graphics/icons/advanced-recipe.png",
---                 scale = 0.5,
---                 shift = {-12, 12}
---                 }},
---             enabled = false,
---             ingredients = {
---                 {type = "item", name = "uranium-rounds-magazine", amount = 1},
---                 {type = "item", name = "cluster-grenade", amount = 1},
---                 {type = "fluid", name = "light-oil", amount = 20}
---             },
---             energy_required = 50,
---             results = {{type="item", name="military-science-pack", amount=20}},
---             allow_productivity = true
---         }
---     }
+    data:extend{
+        {
+            type = "recipe",
+            name = "advanced-automation-science-pack",
+            categories = { "metallurgy" },
+            subgroup = "advanced-science-pack",
+            icons = {{
+                icon = "__base__/graphics/icons/automation-science-pack.png",
+                scale = 1.0,
+                shift = {0, 0}
+                },{
+                    icon = "__Extraplanetary-Production-AoP-Classic__/graphics/icons/advanced-recipe.png",
+                    scale = 0.5,
+                    shift = {-12, 12}
+                }},
+            enabled = false,
+            ingredients = {
+                {type = "item", name = "iron-gear-wheel", amount = 10},
+                {type = "fluid", name = "molten-copper", amount = 100}
+            },
+            energy_required = 50,
+            results = {{type="item", name="automation-science-pack", amount=10}},
+            allow_productivity = true
+        },
+        {
+            type = "recipe",
+            name = "advanced-logistic-science-pack",
+            categories = { "electromagnetics" },
+            subgroup = "advanced-science-pack",
+            icons = {{
+                icon = "__base__/graphics/icons/logistic-science-pack.png",
+                scale = 1.0,
+                shift = {0, 0}
+                },{
+                icon = "__Extraplanetary-Production-AoP-Classic__/graphics/icons/advanced-recipe.png",
+                scale = 0.5,
+                shift = {-12, 12}
+                }},
+            enabled = false,
+            ingredients = {
+                {type = "item", name = "fast-inserter", amount = 1},
+                {type = "item", name = "fast-transport-belt", amount = 1}
+            },
+            energy_required = 18,
+            results = {{type="item", name="logistic-science-pack", amount=3}},
+            allow_productivity = true
+        },
+        {
+            type = "recipe",
+            name = "advanced-military-science-pack",
+            categories = { "crafting-with-fluid" },
+            subgroup = "advanced-science-pack",
+            icons = {{
+                icon = "__base__/graphics/icons/military-science-pack.png",
+                scale = 1.0,
+                shift = {0, 0}
+                },{
+                icon = "__Extraplanetary-Production-AoP-Classic__/graphics/icons/advanced-recipe.png",
+                scale = 0.5,
+                shift = {-12, 12}
+                }},
+            enabled = false,
+            ingredients = {
+                {type = "item", name = "uranium-rounds-magazine", amount = 1},
+                {type = "item", name = "cluster-grenade", amount = 1},
+                {type = "fluid", name = "light-oil", amount = 20}
+            },
+            energy_required = 50,
+            results = {{type="item", name="military-science-pack", amount=20}},
+            allow_productivity = true
+        }
+    }
 
---     addRecipeToTechnology("advanced-automation-science-pack","foundry")
---     addRecipeToTechnology("advanced-logistic-science-pack","electromagnetic-plant")
---     addRecipeToTechnology("advanced-military-science-pack","uranium-ammo")
--- end
+    addRecipeToTechnology("advanced-automation-science-pack","foundry")
+    addRecipeToTechnology("advanced-logistic-science-pack","electromagnetic-plant")
+    addRecipeToTechnology("advanced-military-science-pack","uranium-ammo")
+end

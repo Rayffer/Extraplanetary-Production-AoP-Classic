@@ -337,6 +337,6 @@ add_categories("piercing-rounds-magazine", { "crafting", "ammunition" })
 add_categories("uranium-rounds-magazine", { "crafting", "cryogenics", "ammunition" })
 
 add_categories("military-science-pack", { "crafting", "quantum-assembling", "ammunition" })
-add_categories("advanced-military-science-pack", { "crafting", "quantum-assembling", "ammunition", "crafting-with-fluid" })
+add_categories("advanced-military-science-pack", { "quantum-assembling", "ammunition", "crafting-with-fluid" })
 
 return skipped_recipes
