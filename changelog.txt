@@ -1,3 +1,9 @@
+Version: 1.4.1
+Date: 2026-07-08
+  Fixed:
+    - Fixed advanced sciences (chemical, utility, production and space) were not being added to Space Age buildings without Age Of Production (Classic) enabled.
+
+---------------------------------------------------------------------------------------------------
 Version: 1.4.0
 Date: 2026-06-26
   Changes:

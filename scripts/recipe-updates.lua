@@ -111,10 +111,18 @@ if personal_equip_em_plant then
     changeCategory("personal-roboport-mk2-equipment","electromagnetics","speed-module")
     changeCategory("night-vision-equipment","electromagnetics","speed-module")
     changeCategory("belt-immunity-equipment","electromagnetics","speed-module")
-    if nuclear_reactor_cryo_plant then
-        changeCategory("fission-reactor-equipment","cryogenics","cryogenic-plant")
-        changeCategory("fusion-reactor-equipment","cryogenics","cryogenic-plant")
-    end
+end
+
+if nuclear_reactor_cryo_plant then
+    changeCategory("fission-reactor-equipment","cryogenics","cryogenic-plant")
+    changeCategory("fusion-reactor-equipment","cryogenics","cryogenic-plant")
+end
+
+if adv_science_changes then
+    changeCategory("chemical-science-pack","organic", "biochamber")
+    changeCategory("production-science-pack","metallurgy", "foundry")
+    changeCategory("utility-science-pack","electronics", "electromagnetic-plant")
+    changeCategory("space-science-pack","cryogenics","cryogenic-plant")
 end
 
 changeCategory("biolab","organic","rocket-fuel")
