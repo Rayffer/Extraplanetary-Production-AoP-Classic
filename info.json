@@ -1,6 +1,6 @@
 {
 	"name": "Extraplanetary-Production-AoP-Classic",
-	"version": "1.4.1",
+	"version": "1.4.2",
 	"title": "Extraplanetary Production (AoP Classic)",
 	"author": "inkyboi",
 	"factorio_version": "2.1",
@@ -9,6 +9,7 @@
 		"? cargo-ships",
 		"? aai-containers",
 		"? valves",
+		"? configurable-valve",
 		"? vtk-cannon-turret",
 		"? doeworks-deer",
 		"? pushbutton",

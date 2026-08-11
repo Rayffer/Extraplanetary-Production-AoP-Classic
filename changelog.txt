@@ -1,24 +1,26 @@
+---------------------------------------------------------------------------------------------------
+Version: 1.4.2
+Date: 2026-07-08
+  Added:
+    - Compatibility with Configurable Valve mod by Stringweasel
+---------------------------------------------------------------------------------------------------
 Version: 1.4.1
 Date: 2026-07-08
   Fixed:
     - Fixed advanced sciences (chemical, utility, production and space) were not being added to Space Age buildings without Age Of Production (Classic) enabled.
-
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.0
 Date: 2026-06-26
   Changes:
     - Added Support for Factorio 2.1
-
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.73
   Bugfixes:
     - Changed order of compat script loading
-
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.72
   Bugfixes:
     - Fix for an error caused by the foundation recipe due to referencing transport-belt. Now references express-transport-belt to account for fluid ingredient.
-
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.71
   Bugfixes:
@@ -27,7 +29,6 @@ Version: 1.3.71
     - Added reference recipes for other science pack category changes; previously only space science had this.
   Info:
     - Recipes changed due to AoP compat do not currently use reference recipes as most of them use unique categories added by this mod.
-    
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.7
   Features:
@@ -43,12 +44,10 @@ Version: 1.3.7
     - Inserters were previously not made outside of assembly machines (or AoP electromagnetic plant) due to my immersion philosophy: things with many small/moving parts (complex) should be made in assembly machines (precise assembly).
     - Exceptions being vanilla precedent or mod compatibility (ie if either vanilla or a compatible mod allows similar recipes in a given machine)
     - Other reasonable but against my immersion philosophy will also be available but off by default, check the mod config for any such implementations.
-
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.6
   Bugfixes:
     - (AoP) Fixed reloading AoP during compatibility phase, which caused some errors AoP had already fixed to reappear.
-
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.5
   Bugfixes:
@@ -59,7 +58,6 @@ Version: 1.3.5
     - Removed reference to cooling catalyst in ammonial holmium solution recipe description.
   Minor Features:
     - (AoP) Any applicable recipes should be automatically applied to the armory, mineral synthesizer, and advanced assembler.
-
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.4
   Bugfixes:
@@ -72,19 +70,16 @@ Version: 1.3.4
     - Ammonial holmium solution recipe no longer requires or returns fluoroketone. Now requires 10 ammonia and returns 5.
       Holmium ore required reduced from 2 to 1 (50%). Holmium solution output reduced to 75 (50%).
       This means that the recipe can actually be made within the available buildings, as the previous recipe had 5 fluid ingredients/outputs.
-
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.3
   Bugfixes:
     - Fixed a startup crash
-
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.2
   Bugfixes:
     - (AoP) Fixed locomotive, cargo wagon, fluid wagon recipes missing from machines when Age of Production is present
   Features:
     - Added config for logistic chests in the EM plant (enabled by default)
-
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.0
   Info:
@@ -99,7 +94,6 @@ Version: 1.3.0
   Bugfixes:
     - Changed data load timings (again) to hopefully re-fix overwriting other mods' recipe changes by default.
       Basic science pack changes should now be able to be enabled without overriding most mods.
-
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.1
   Bugfixes:
@@ -108,7 +102,6 @@ Version: 1.3.1
     - (AoP) Fixed multiple missing recipes in the electromechanic facility
   Features:
     - (AoP) Added cargo bay, asteroid collector, crusher, and thruster to electromechanic facility
-    
 ---------------------------------------------------------------------------------------------------
 Version: 1.2.1
   Info:

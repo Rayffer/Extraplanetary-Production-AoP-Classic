@@ -168,6 +168,11 @@ if mods["valves"] then
     changeCategory("valves-one_way","metallurgy","transport-belt")
 end
 
+if mods["configurable-valves"] then
+    log("Found compatible mod configurable-valves")
+    changeCategory("configurable-valve","metallurgy","transport-belt")
+end
+
 if mods["aai-containers"] then
     log("Found compatible mod aai-containers")
     changeCategory("aai-strongbox","metallurgy","transport-belt")
